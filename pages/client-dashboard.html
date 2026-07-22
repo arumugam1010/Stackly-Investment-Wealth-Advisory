@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Client Dashboard — Stackly Capital</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232ee6a8'/%3E%3Cpath d='M7 21l5-6 4 3 9-10' stroke='%2304130c' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+  <link href="../css/style.css" rel="stylesheet" />
+</head>
+<body class="page-client-dashboard">
+  <div class="dash">
+    <aside class="sidebar" id="sidebar">
+      <div class="d-flex justify-content-between align-items-center pe-3 w-100">
+        <a class="brand" href="client-dashboard.html"><span class="brand-mark"><img src="../assets/logo-stackly.png" alt="Logo"></span><span class="brand-name">Stackly<b>Client</b></span></a>
+        <button type="button" class="btn-close btn-close-white d-lg-none" aria-label="Close" onclick="toggleSidebar()"></button>
+      </div>
+      <nav class="side-nav">
+        <div class="side-group-label">Portfolio</div>
+        <a class="side-link active" data-title="Overview" onclick="switchView('v-overview',this)"><i class="bi bi-grid-1x2"></i> Overview</a>
+        <a class="side-link" data-title="Investments" onclick="switchView('v-invest',this)"><i class="bi bi-graph-up"></i> Investments</a>
+        <a class="side-link" data-title="Profit / Loss" onclick="switchView('v-pnl',this)"><i class="bi bi-cash-coin"></i> Profit / Loss</a>
+        <a class="side-link" data-title="Asset Allocation" onclick="switchView('v-alloc',this)"><i class="bi bi-pie-chart"></i> Asset Allocation</a>
+        <a class="side-link" data-title="Transactions" onclick="switchView('v-tx',this)"><i class="bi bi-receipt"></i> Transactions</a>
+        <div class="side-group-label">Planning</div>
+        <a class="side-link" data-title="Goals" onclick="switchView('v-goals',this)"><i class="bi bi-bullseye"></i> Goals</a>
+        <a class="side-link" data-title="Retirement Planner" onclick="switchView('v-retire',this)"><i class="bi bi-umbrella"></i> Retirement</a>
+        <a class="side-link" data-title="Tax Reports" onclick="switchView('v-tax',this)"><i class="bi bi-file-earmark-text"></i> Tax Reports</a>
+        <div class="side-group-label">Account</div>
+        <a class="side-link" data-title="Statements" onclick="switchView('v-stmt',this)"><i class="bi bi-download"></i> Statements</a>
+        <a class="side-link" data-title="Support" onclick="switchView('v-support',this)"><i class="bi bi-headset"></i> Support</a>
+        <a class="side-link" data-title="Settings" onclick="switchView('v-settings',this)"><i class="bi bi-gear"></i> Settings</a>
+        <a class="side-link text-danger" href="../login.html" onclick="localStorage.removeItem('username');"><i class="bi bi-box-arrow-left"></i> Logout</a>
+      </nav>
+      <div class="side-user"><div class="av">EH</div><div><div class="fw-semibold" style="font-size:.9rem">Eleanor Hayes</div><div style="font-size:.78rem;color:var(--text-dim)">Private Wealth</div></div></div>
+    </aside>
+
+    <div class="dash-main">
+      <header class="dash-top">
+        <button class="theme-toggle menu-btn me-2" onclick="toggleSidebar()"><i class="bi bi-list"></i></button>
+        <div class="flex-grow-1 d-none d-md-block"><span style="color:var(--text-dim);font-size:.85rem;">Client ·</span> <span id="dashTitle" class="fw-semibold">Overview</span></div>
+        <div class="flex-grow-1 d-md-none"></div>
+        <div class="av-circle">EH</div>
+      </header>
+
+      <div id="notifPanel" class="glass d-none" style="position:fixed;top:64px;right:24px;z-index:1050;width:320px;padding:16px;">
+        <div class="fw-semibold mb-2">Notifications</div>
+        <div class="d-flex gap-2 align-items-start mb-3"><div class="stat-ic icon-green" style="width:36px;height:36px;"><i class="bi bi-cash" style="font-size:1rem"></i></div><div><div style="font-size:.88rem" class="fw-semibold">Dividend received $1,240</div><div style="font-size:.76rem;color:var(--text-dim)">1 hr ago</div></div></div>
+        <div class="d-flex gap-2 align-items-start mb-3"><div class="stat-ic icon-blue" style="width:36px;height:36px;"><i class="bi bi-calendar-check" style="font-size:1rem"></i></div><div><div style="font-size:.88rem" class="fw-semibold">Advisor meeting tomorrow 10:00</div><div style="font-size:.76rem;color:var(--text-dim)">3 hrs ago</div></div></div>
+      </div>
+
+      <main class="dash-content">
+
+        <!-- OVERVIEW -->
+        <section class="dview active" id="v-overview">
+          <div class="row g-3 g-lg-4 mb-4">
+            <div class="col-sm-6 col-xl-3"><div class="glass card-green dash-card"><div class="d-flex justify-content-between"><div><div style="font-size:.78rem;color:var(--text-dim)">Portfolio value</div><div class="mono mt-1" style="font-size:1.5rem;font-weight:700">$2,481,930</div><div style="font-size:.78rem;color:var(--primary)">+18.6% YTD</div></div><div class="stat-ic icon-green"><i class="bi bi-wallet2"></i></div></div></div></div>
+            <div class="col-sm-6 col-xl-3"><div class="glass card-blue dash-card"><div class="d-flex justify-content-between"><div><div style="font-size:.78rem;color:var(--text-dim)">Total return</div><div class="mono mt-1" style="font-size:1.5rem;font-weight:700">+$389,420</div><div style="font-size:.78rem;color:var(--primary)">+18.6%</div></div><div class="stat-ic icon-blue"><i class="bi bi-graph-up-arrow"></i></div></div></div></div>
+            <div class="col-sm-6 col-xl-3"><div class="glass card-gold dash-card"><div class="d-flex justify-content-between"><div><div style="font-size:.78rem;color:var(--text-dim)">This month</div><div class="mono mt-1" style="font-size:1.5rem;font-weight:700">+$24,180</div><div style="font-size:.78rem;color:var(--primary)">+0.98%</div></div><div class="stat-ic icon-gold"><i class="bi bi-calendar-month"></i></div></div></div></div>
+            <div class="col-sm-6 col-xl-3"><div class="glass card-teal dash-card"><div class="d-flex justify-content-between"><div><div style="font-size:.78rem;color:var(--text-dim)">Risk score</div><div class="mono mt-1" style="font-size:1.5rem;font-weight:700">A+ Stable</div><div style="font-size:.78rem;color:var(--accent)">Low volatility</div></div><div class="stat-ic icon-green"><i class="bi bi-shield-check"></i></div></div></div></div>
+          </div>
+          <div class="row g-3 g-lg-4">
+            <div class="col-lg-8"><div class="glass dash-card"><div class="d-flex justify-content-between align-items-center mb-3"><h5 class="mb-0">Portfolio growth</h5><span class="badge-soft badge-green">+18.6% YTD</span></div><canvas data-chart-line="2.1,2.15,2.2,2.24,2.3,2.35,2.38,2.42,2.45,2.48" data-color="#2ee6a8" style="width:100%;height:300px;"></canvas></div></div>
+            <div class="col-lg-4"><div class="glass dash-card"><h5 class="mb-3">Asset allocation</h5><canvas data-chart-donut='[{"value":58,"color":"#2ee6a8"},{"value":22,"color":"#4aa8ff"},{"value":14,"color":"#e9c46a"},{"value":6,"color":"#ff5d6c"}]' style="width:200px;height:200px;"></canvas><div class="mt-3" style="font-size:.85rem;"><div class="d-flex justify-content-between"><span><i class="bi bi-circle-fill" style="color:#2ee6a8"></i> Stocks</span><span class="mono">58%</span></div><div class="d-flex justify-content-between"><span><i class="bi bi-circle-fill" style="color:#4aa8ff"></i> Bonds</span><span class="mono">22%</span></div><div class="d-flex justify-content-between"><span><i class="bi bi-circle-fill" style="color:#e9c46a"></i> Alternatives</span><span class="mono">14%</span></div><div class="d-flex justify-content-between"><span><i class="bi bi-circle-fill" style="color:#ff5d6c"></i> Cash</span><span class="mono">6%</span></div></div></div></div>
+          </div>
+          <div class="glass dash-card mt-4">
+            <h5 class="mb-3">Active Advisor Alerts & Operations</h5>
+            <div class="row g-3">
+              <div class="col-md-6"><div class="d-flex gap-3 align-items-center"><i class="bi bi-percent text-primary" style="font-size:1.4rem;"></i><div><div class="fw-semibold" style="font-size:.9rem;">Tax-Loss Harvesting Alert</div><div class="text-muted-2" style="font-size:.8rem;">$12.4k available to harvest in taxable accounts.</div></div></div></div>
+              <div class="col-md-6"><div class="d-flex gap-3 align-items-center"><i class="bi bi-shuffle text-accent" style="font-size:1.4rem;"></i><div><div class="fw-semibold" style="font-size:.9rem;">Quarterly Rebalancing Recommendation</div><div class="text-muted-2" style="font-size:.8rem;">Proposed trade plan generated by Sofia Romano.</div></div></div></div>
+              <div class="col-md-6"><div class="d-flex gap-3 align-items-center"><i class="bi bi-shield-check text-success" style="font-size:1.4rem;"></i><div><div class="fw-semibold" style="font-size:.9rem;">2-Factor Authentication Audit</div><div class="text-muted-2" style="font-size:.8rem;">Your 2FA protection status is currently verified.</div></div></div></div>
+              <div class="col-md-6"><div class="d-flex gap-3 align-items-center"><i class="bi bi-file-earmark-arrow-down text-gold" style="font-size:1.4rem;"></i><div><div class="fw-semibold" style="font-size:.9rem;">Statements Update</div><div class="text-muted-2" style="font-size:.8rem;">Q1 2026 statement report is ready for download.</div></div></div></div>
+              <div class="col-md-6"><div class="d-flex gap-3 align-items-center"><i class="bi bi-calendar-check text-info" style="font-size:1.4rem;"></i><div><div class="fw-semibold" style="font-size:.9rem;">Advisory Meeting Scheduled</div><div class="text-muted-2" style="font-size:.8rem;">Virtual review with Sofia Romano tomorrow at 10:00.</div></div></div></div>
+              <div class="col-md-6"><div class="d-flex gap-3 align-items-center"><i class="bi bi-bank text-warning" style="font-size:1.4rem;"></i><div><div class="fw-semibold" style="font-size:.9rem;">Private Equity Capital Call</div><div class="text-muted-2" style="font-size:.8rem;">Tech Venture Capital V commitment completed.</div></div></div></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- INVESTMENTS -->
+        <section class="dview" id="v-invest">
+          <div class="row g-3 g-lg-4 mb-4">
+            <div class="col-sm-6 col-xl-3"><div class="glass card-green dash-card"><div style="font-size:.78rem;color:var(--text-dim)">Total holdings</div><div class="mono mt-1" style="font-size:1.4rem;font-weight:700">$2,481,930</div></div></div>
+            <div class="col-sm-6 col-xl-3"><div class="glass card-blue dash-card"><div style="font-size:.78rem;color:var(--text-dim)">Positions</div><div class="mono mt-1" style="font-size:1.4rem;font-weight:700">8</div></div></div>
+            <div class="col-sm-6 col-xl-3"><div class="glass card-gold dash-card"><div style="font-size:.78rem;color:var(--text-dim)">Best performer</div><div class="mono mt-1" style="font-size:1.4rem;font-weight:700">+22.8%</div></div></div>
+            <div class="col-sm-6 col-xl-3"><div class="glass card-teal dash-card"><div style="font-size:.78rem;color:var(--text-dim)">Dividends (YTD)</div><div class="mono mt-1" style="font-size:1.4rem;font-weight:700">$4,820</div></div></div>
+          </div>
+          <div class="glass dash-card"><div class="d-flex justify-content-between align-items-center mb-3"><h5 class="mb-0">Holdings</h5><input class="form-control form-control-sm" style="max-width:200px;" placeholder="Search..." data-filter-input="#holdTbl"></div><div class="table-responsive"><table class="table table-dash" id="holdTbl"><thead><tr><th>Holding</th><th>Shares</th><th>Value</th><th>Return</th><th>Weight</th><th></th></tr></thead><tbody>
+            <tr><td>MSCI World ETF</td><td>420</td><td class="mono">$1,240,000</td><td><span style="color:var(--primary)">+19.2%</span></td><td class="mono">50.0%</td><td><a href="../404.html" class="btn btn-ghost btn-sm-grad">Details</a></td></tr>
+            <tr><td>US Treasury 10Y</td><td>200</td><td class="mono">$540,000</td><td><span style="color:var(--primary)">+4.2%</span></td><td class="mono">21.8%</td><td><a href="../404.html" class="btn btn-ghost btn-sm-grad">Details</a></td></tr>
+            <tr><td>Private Equity Fund III</td><td>—</td><td class="mono">$420,000</td><td><span style="color:var(--primary)">+22.8%</span></td><td class="mono">16.9%</td><td><a href="../404.html" class="btn btn-ghost btn-sm-grad">Details</a></td></tr>
+            <tr><td>Gold ETF</td><td>180</td><td class="mono">$281,930</td><td><span style="color:var(--primary)">+12.1%</span></td><td class="mono">11.3%</td><td><a href="../404.html" class="btn btn-ghost btn-sm-grad">Details</a></td></tr>
+            <tr><td>Tech Venture Capital V</td><td>—</td><td class="mono">$350,000</td><td><span style="color:var(--primary)">+28.4%</span></td><td class="mono">14.1%</td><td><a href="../404.html" class="btn btn-ghost btn-sm-grad">Details</a></td></tr>
+            <tr><td>Emerging Markets Equity</td><td>310</td><td class="mono">$180,000</td><td><span style="color:var(--primary)">+9.1%</span></td><td class="mono">7.2%</td><td><a href="../404.html" class="btn btn-ghost btn-sm-grad">Details</a></td></tr>
+            <tr><td>Real Estate Fund II</td><td>—</td><td class="mono">$290,000</td><td><span style="color:var(--primary)">+14.6%</span></td><td class="mono">11.6%</td><td><a href="../404.html" class="btn btn-ghost btn-sm-grad">Details</a></td></tr>
+            <tr><td>Global Healthcare ETF</td><td>140</td><td class="mono">$110,000</td><td><span style="color:var(--primary)">+6.8%</span></td><td class="mono">4.4%</td><td><a href="../404.html" class="btn btn-ghost btn-sm-grad">Details</a></td></tr>
+            <tr><td>S&P 500 ESG Index Fund</td><td>550</td><td class="mono">$420,000</td><td><span style="color:var(--primary)">+16.2%</span></td><td class="mono">16.9%</td><td><a href="../404.html" class="btn btn-ghost btn-sm-grad">Details</a></td></tr>
+            <tr><td>Real Estate Trust IV</td><td>—</td><td class="mono">$195,000</td><td><span style="color:var(--primary)">+11.4%</span></td><td class="mono">7.8%</td><td><a href="../404.html" class="btn btn-ghost btn-sm-grad">Details</a></td></tr>
+            <tr><td>Energy Transition Fund</td><td>—</td><td class="mono">$150,000</td><td><span style="color:var(--primary)">+18.9%</span></td><td class="mono">6.0%</td><td><a href="../404.html" class="btn btn-ghost btn-sm-grad">Details</a></td></tr>
+            <tr><td>Nasdaq 100 Index ETF</td><td>210</td><td class="mono">$390,000</td><td><span style="color:var(--primary)">+24.2%</span></td><td class="mono">15.7%</td><td><a href="../404.html" class="btn btn-ghost btn-sm-grad">Details</a></td></tr>
+            <tr><td>Global Infrastructure Bond</td><td>280</td><td class="mono">$240,000</td><td><span style="color:var(--primary)">+5.1%</span></td><td class="mono">9.6%</td><td><a href="../404.html" class="btn btn-ghost btn-sm-grad">Details</a></td></tr>
+            <tr><td>US Treasury Bill 3M</td><td>500</td><td class="mono">$500,000</td><td><span style="color:var(--primary)">+5.2%</span></td><td class="mono">20.1%</td><td><a href="../404.html" class="btn btn-ghost btn-sm-grad">Details</a></td></tr>
+          </tbody></table></div></div>
+        </section>
+
+        <!-- PNL -->
+        <section class="dview" id="v-pnl">
+          <div class="row g-3 g-lg-4 mb-4">
+            <div class="col-sm-6 col-xl-3"><div class="glass card-green dash-card"><div style="font-size:.78rem;color:var(--text-dim)">Realized gains (YTD)</div><div class="mono mt-1" style="font-size:1.4rem;font-weight:700;color:var(--primary)">+$48,210</div></div></div>
+            <div class="col-sm-6 col-xl-3"><div class="glass card-blue dash-card"><div style="font-size:.78rem;color:var(--text-dim)">Unrealized gains</div><div class="mono mt-1" style="font-size:1.4rem;font-weight:700;color:var(--primary)">+$341,210</div></div></div>
+            <div class="col-sm-6 col-xl-3"><div class="glass card-gold dash-card"><div style="font-size:.78rem;color:var(--text-dim)">Dividends (YTD)</div><div class="mono mt-1" style="font-size:1.4rem;font-weight:700">$4,820</div></div></div>
+            <div class="col-sm-6 col-xl-3"><div class="glass card-teal dash-card"><div style="font-size:.78rem;color:var(--text-dim)">Tax paid</div><div class="mono mt-1" style="font-size:1.4rem;font-weight:700">$11,520</div></div></div>
+          </div>
+          <div class="glass dash-card mb-4"><h5 class="mb-3">Monthly P/L</h5><canvas data-chart-bars="12,18,9,22,14,28,19,24,16,30,22,24" data-c1="#2ee6a8" data-c2="#19b27e" style="width:100%;height:300px;"></canvas></div>
+          <div class="glass dash-card"><h5 class="mb-3">Realized P/L Details (6 positions)</h5><div class="table-responsive"><table class="table table-dash"><thead><tr><th>Asset</th><th>Realized gain/loss</th><th>Yield YTD</th><th>Tax Classification</th><th>Settlement Date</th></tr></thead><tbody>
+            <tr><td>MSCI World ETF</td><td class="mono" style="color:var(--primary)">+$12,450</td><td class="mono">19.2%</td><td>Long Term Cap Gains</td><td>Mar 12, 2026</td></tr>
+            <tr><td>US Treasury 10Y</td><td class="mono" style="color:var(--primary)">+$3,580</td><td class="mono">4.2%</td><td>Ordinary Income</td><td>Mar 10, 2026</td></tr>
+            <tr><td>Tech Venture V</td><td class="mono" style="color:var(--primary)">+$18,400</td><td class="mono">28.4%</td><td>Short Term Cap Gains</td><td>Feb 15, 2026</td></tr>
+            <tr><td>Gold ETF</td><td class="mono" style="color:var(--danger)">-$1,200</td><td class="mono">12.1%</td><td>Long Term Collectible</td><td>Jan 28, 2026</td></tr>
+            <tr><td>Nasdaq 100 ETF</td><td class="mono" style="color:var(--primary)">+$22,100</td><td class="mono">24.2%</td><td>Long Term Cap Gains</td><td>Jan 12, 2026</td></tr>
+            <tr><td>S&P 500 ESG Fund</td><td class="mono" style="color:var(--primary)">+$9,820</td><td class="mono">16.2%</td><td>Long Term Cap Gains</td><td>Dec 15, 2025</td></tr>
+          </tbody></table></div></div>
+        </section>
+
+        <!-- ALLOCATION -->
+        <section class="dview" id="v-alloc">
+          <div class="row g-3 g-lg-4">
+            <div class="col-lg-5">
+              <div class="glass dash-card mb-3"><h5 class="mb-3">Allocation</h5><canvas data-chart-donut='[{"value":58,"color":"#2ee6a8"},{"value":22,"color":"#4aa8ff"},{"value":14,"color":"#e9c46a"},{"value":6,"color":"#ff5d6c"}]' style="width:240px;height:240px;"></canvas></div>
+              <div class="glass dash-card"><h5 class="mb-3">Asset classes</h5><div class="mt-3"><div class="mb-3"><div class="d-flex justify-content-between" style="font-size:.85rem;"><span>Equities</span><span class="mono">58%</span></div><div class="progress-soft mt-1"><div class="bar" style="width:58%"></div></div></div><div class="mb-3"><div class="d-flex justify-content-between" style="font-size:.85rem;"><span>Fixed Income</span><span class="mono">22%</span></div><div class="progress-soft mt-1"><div class="bar" style="width:22%;background:var(--grad-accent)"></div></div></div><div class="mb-3"><div class="d-flex justify-content-between" style="font-size:.85rem;"><span>Real Assets</span><span class="mono">14%</span></div><div class="progress-soft mt-1"><div class="bar" style="width:14%;background:var(--grad-gold)"></div></div></div><div><div class="d-flex justify-content-between" style="font-size:.85rem;"><span>Alternatives</span><span class="mono">6%</span></div><div class="progress-soft mt-1"><div class="bar" style="width:6%;background:var(--grad-primary)"></div></div></div></div></div>
+            </div>
+            <div class="col-lg-7"><div class="glass dash-card"><h5 class="mb-3">By sector</h5><div class="mt-3"><div class="mb-3"><div class="d-flex justify-content-between" style="font-size:.85rem;"><span>Technology</span><span class="mono">28%</span></div><div class="progress-soft mt-1"><div class="bar" style="width:28%"></div></div></div><div class="mb-3"><div class="d-flex justify-content-between" style="font-size:.85rem;"><span>Healthcare</span><span class="mono">18%</span></div><div class="progress-soft mt-1"><div class="bar" style="width:18%;background:var(--grad-accent)"></div></div></div><div class="mb-3"><div class="d-flex justify-content-between" style="font-size:.85rem;"><span>Financials</span><span class="mono">14%</span></div><div class="progress-soft mt-1"><div class="bar" style="width:14%;background:var(--grad-gold)"></div></div></div><div class="mb-3"><div class="d-flex justify-content-between" style="font-size:.85rem;"><span>Consumer</span><span class="mono">10%</span></div><div class="progress-soft mt-1"><div class="bar" style="width:10%"></div></div></div><div class="mb-3"><div class="d-flex justify-content-between" style="font-size:.85rem;"><span>Communication Services</span><span class="mono">8%</span></div><div class="progress-soft mt-1"><div class="bar" style="width:8%;background:var(--grad-accent)"></div></div></div><div class="mb-3"><div class="d-flex justify-content-between" style="font-size:.85rem;"><span>Industrials</span><span class="mono">7%</span></div><div class="progress-soft mt-1"><div class="bar" style="width:7%;background:var(--grad-gold)"></div></div></div><div class="mb-3"><div class="d-flex justify-content-between" style="font-size:.85rem;"><span>Energy</span><span class="mono">6%</span></div><div class="progress-soft mt-1"><div class="bar" style="width:6%;background:var(--grad-accent)"></div></div></div><div class="mb-3"><div class="d-flex justify-content-between" style="font-size:.85rem;"><span>Real Estate</span><span class="mono">5%</span></div><div class="progress-soft mt-1"><div class="bar" style="width:5%"></div></div></div><div class="mb-3"><div class="d-flex justify-content-between" style="font-size:.85rem;"><span>Materials</span><span class="mono">3%</span></div><div class="progress-soft mt-1"><div class="bar" style="width:3%;background:var(--grad-gold)"></div></div></div><div class="mb-3"><div class="d-flex justify-content-between" style="font-size:.85rem;"><span>Utilities</span><span class="mono">2%</span></div><div class="progress-soft mt-1"><div class="bar" style="width:2%"></div></div></div><div><div class="d-flex justify-content-between" style="font-size:.85rem;"><span>Other</span><span class="mono">1%</span></div><div class="progress-soft mt-1"><div class="bar" style="width:1%;background:var(--grad-accent)"></div></div></div></div></div></div>
+          </div>
+        </section>
+
+        <!-- TRANSACTIONS -->
+        <section class="dview" id="v-tx">
+          <div class="row g-3 g-lg-4 mb-4">
+            <div class="col-sm-6 col-xl-3"><div class="glass card-green dash-card"><div style="font-size:.78rem;color:var(--text-dim)">Total (30d)</div><div class="mono mt-1" style="font-size:1.4rem;font-weight:700">28</div></div></div>
+            <div class="col-sm-6 col-xl-3"><div class="glass card-blue dash-card"><div style="font-size:.78rem;color:var(--text-dim)">Deposits</div><div class="mono mt-1" style="font-size:1.4rem;font-weight:700">+$50,000</div></div></div>
+            <div class="col-sm-6 col-xl-3"><div class="glass card-gold dash-card"><div style="font-size:.78rem;color:var(--text-dim)">Withdrawals</div><div class="mono mt-1" style="font-size:1.4rem;font-weight:700">-$28,000</div></div></div>
+            <div class="col-sm-6 col-xl-3"><div class="glass card-teal dash-card"><div style="font-size:.78rem;color:var(--text-dim)">Dividends</div><div class="mono mt-1" style="font-size:1.4rem;font-weight:700">+$1,240</div></div></div>
+          </div>
+          <div class="glass dash-card"><div class="d-flex justify-content-between align-items-center mb-3"><h5 class="mb-0">Transaction history</h5><a href="../404.html" class="btn btn-ghost btn-sm-grad"><i class="bi bi-download"></i> Export</a></div><div class="table-responsive"><table class="table table-dash"><thead><tr><th>Date</th><th>Description</th><th>Type</th><th>Amount</th></tr></thead><tbody>
+            <tr><td>Apr 02</td><td>Dividend — MSCI World ETF</td><td><span class="badge-soft badge-green">Dividend</span></td><td class="mono" style="color:var(--primary)">+$1,240</td></tr>
+            <tr><td>Mar 28</td><td>Rebalance — trim US large-cap</td><td><span class="badge-soft badge-blue">Rebalance</span></td><td class="mono">-$48,000</td></tr>
+            <tr><td>Mar 22</td><td>Deposit</td><td><span class="badge-soft badge-green">Deposit</span></td><td class="mono" style="color:var(--primary)">+$50,000</td></tr>
+            <tr><td>Mar 15</td><td>Buy — Gold ETF</td><td><span class="badge-soft badge-gold">Buy</span></td><td class="mono">-$28,000</td></tr>
+            <tr><td>Mar 10</td><td>Dividend — US Treasury 10Y</td><td><span class="badge-soft badge-green">Dividend</span></td><td class="mono" style="color:var(--primary)">+$3,580</td></tr>
+            <tr><td>Mar 05</td><td>Management fee — Q1</td><td><span class="badge-soft badge-red">Fee</span></td><td class="mono">-$620</td></tr>
+            <tr><td>Feb 28</td><td>Rebalance — add international equity</td><td><span class="badge-soft badge-blue">Rebalance</span></td><td class="mono">-$22,000</td></tr>
+            <tr><td>Feb 15</td><td>Buy — Tech Venture Capital V</td><td><span class="badge-soft badge-gold">Buy</span></td><td class="mono">-$12,000</td></tr>
+            <tr><td>Feb 02</td><td>Dividend — Global Healthcare ETF</td><td><span class="badge-soft badge-green">Dividend</span></td><td class="mono" style="color:var(--primary)">+$840</td></tr>
+            <tr><td>Jan 28</td><td>Deposit</td><td><span class="badge-soft badge-green">Deposit</span></td><td class="mono" style="color:var(--primary)">+$15,000</td></tr>
+            <tr><td>Jan 15</td><td>Management fee — Q4</td><td><span class="badge-soft badge-red">Fee</span></td><td class="mono">-$590</td></tr>
+            <tr><td>Jan 05</td><td>Rebalance — trim Alternatives</td><td><span class="badge-soft badge-blue">Rebalance</span></td><td class="mono">-$18,000</td></tr>
+            <tr><td>Dec 20</td><td>Dividend — US Treasury 10Y</td><td><span class="badge-soft badge-green">Dividend</span></td><td class="mono" style="color:var(--primary)">+$3,580</td></tr>
+            <tr><td>Dec 05</td><td>Deposit</td><td><span class="badge-soft badge-green">Deposit</span></td><td class="mono" style="color:var(--primary)">+$10,000</td></tr>
+            <tr><td>Nov 28</td><td>Rebalance — trim energy</td><td><span class="badge-soft badge-blue">Rebalance</span></td><td class="mono">-$15,000</td></tr>
+            <tr><td>Nov 15</td><td>Management fee — Q3</td><td><span class="badge-soft badge-red">Fee</span></td><td class="mono">-$590</td></tr>
+            <tr><td>Nov 02</td><td>Buy — MSCI World ETF</td><td><span class="badge-soft badge-gold">Buy</span></td><td class="mono">-$25,000</td></tr>
+          </tbody></table></div></div>
+        </section>
+
+        <!-- GOALS -->
+        <section class="dview" id="v-goals">
+          <div class="row g-3 g-lg-4 mb-4">
+            <div class="col-sm-6 col-xl-3"><div class="glass card-green dash-card"><div style="font-size:.78rem;color:var(--text-dim)">Active goals</div><div class="mono mt-1" style="font-size:1.4rem;font-weight:700">9</div></div></div>
+            <div class="col-sm-6 col-xl-3"><div class="glass card-blue dash-card"><div style="font-size:.78rem;color:var(--text-dim)">On track</div><div class="mono mt-1" style="font-size:1.4rem;font-weight:700">7</div></div></div>
+            <div class="col-sm-6 col-xl-3"><div class="glass card-gold dash-card"><div style="font-size:.78rem;color:var(--text-dim)">Total saved</div><div class="mono mt-1" style="font-size:1.4rem;font-weight:700">$1.68M</div></div></div>
+            <div class="col-sm-6 col-xl-3"><div class="glass card-teal dash-card"><div style="font-size:.78rem;color:var(--text-dim)">Total target</div><div class="mono mt-1" style="font-size:1.4rem;font-weight:700">$4.78M</div></div></div>
+          </div>
+          <div class="row g-3 g-lg-4">
+            <div class="col-md-6"><div class="glass card-green dash-card"><h5>Retirement</h5><div class="d-flex justify-content-between mt-2" style="font-size:.85rem;"><span>$620k / $1.5M</span><span class="mono">41%</span></div><div class="progress-soft mt-2"><div class="bar" style="width:41%"></div></div><div class="text-muted-2 mt-2" style="font-size:.82rem;">On track · 18 years to target</div></div></div>
+            <div class="col-md-6"><div class="glass card-blue dash-card"><h5>Vacation home</h5><div class="d-flex justify-content-between mt-2" style="font-size:.85rem;"><span>$120k / $400k</span><span class="mono">30%</span></div><div class="progress-soft mt-2"><div class="bar" style="width:30%;background:var(--grad-accent)"></div></div><div class="text-muted-2 mt-2" style="font-size:.82rem;">Slightly behind · 6 years to target</div></div></div>
+            <div class="col-md-6"><div class="glass card-gold dash-card"><h5>Education fund</h5><div class="d-flex justify-content-between mt-2" style="font-size:.85rem;"><span>$84k / $200k</span><span class="mono">42%</span></div><div class="progress-soft mt-2"><div class="bar" style="width:42%;background:var(--grad-gold)"></div></div><div class="text-muted-2 mt-2" style="font-size:.82rem;">On track · 10 years to target</div></div></div>
+            <div class="col-md-6"><div class="glass card-teal dash-card"><h5>Emergency reserve</h5><div class="d-flex justify-content-between mt-2" style="font-size:.85rem;"><span>$72k / $75k</span><span class="mono">96%</span></div><div class="progress-soft mt-2"><div class="bar" style="width:96%"></div></div><div class="text-muted-2 mt-2" style="font-size:.82rem;">Nearly complete</div></div></div>
+            <div class="col-md-6"><div class="glass card-green dash-card"><h5>Corporate Venture Launch</h5><div class="d-flex justify-content-between mt-2" style="font-size:.85rem;"><span>$150k / $500k</span><span class="mono">30%</span></div><div class="progress-soft mt-2"><div class="bar" style="width:30%"></div></div><div class="text-muted-2 mt-2" style="font-size:.82rem;">On track · 4 years to target</div></div></div>
+            <div class="col-md-6"><div class="glass card-blue dash-card"><h5>Legacy Trust Distribution</h5><div class="d-flex justify-content-between mt-2" style="font-size:.85rem;"><span>$300k / $1.0M</span><span class="mono">30%</span></div><div class="progress-soft mt-2"><div class="bar" style="width:30%;background:var(--grad-accent)"></div></div><div class="text-muted-2 mt-2" style="font-size:.82rem;">On track · 12 years to target</div></div></div>
+            <div class="col-md-6"><div class="glass card-gold dash-card"><h5>Luxury Yacht Endowment</h5><div class="d-flex justify-content-between mt-2" style="font-size:.85rem;"><span>$50k / $800k</span><span class="mono">6%</span></div><div class="progress-soft mt-2"><div class="bar" style="width:6%;background:var(--grad-gold)"></div></div><div class="text-muted-2 mt-2" style="font-size:.82rem;">Behind · 15 years to target</div></div></div>
+            <div class="col-md-6"><div class="glass card-teal dash-card"><h5>Philanthropic Donor-Advised Fund</h5><div class="d-flex justify-content-between mt-2" style="font-size:.85rem;"><span>$80k / $250k</span><span class="mono">32%</span></div><div class="progress-soft mt-2"><div class="bar" style="width:32%"></div></div><div class="text-muted-2 mt-2" style="font-size:.82rem;">On track · 5 years to target</div></div></div>
+          </div>
+        </section>
+
+        <!-- RETIREMENT -->
+        <section class="dview" id="v-retire">
+          <div class="row g-3 g-lg-4">
+            <div class="col-lg-5"><div class="glass dash-card"><h5 class="mb-3">Retirement projection</h5><canvas data-chart-donut='[{"value":62,"color":"#2ee6a8"},{"value":38,"color":"#4aa8ff"}]' style="width:200px;height:200px;"></canvas><div class="mt-3" style="font-size:.85rem;"><div class="d-flex justify-content-between"><span><i class="bi bi-circle-fill" style="color:#2ee6a8"></i> Funded</span><span class="mono">62%</span></div><div class="d-flex justify-content-between"><span><i class="bi bi-circle-fill" style="color:#4aa8ff"></i> Gap to target</span><span class="mono">38%</span></div></div></div></div>
+            <div class="col-lg-7"><div class="glass dash-card"><h5 class="mb-3">Projected balance</h5><canvas data-chart-line="620,680,760,840,930,1030,1140,1260,1390,1530" data-color="#4aa8ff" style="width:100%;height:300px;"></canvas><div class="text-muted-2 mt-2" style="font-size:.85rem;">At current contribution rate you'll reach $1.5M by age 63.</div></div></div>
+          </div>
+          <div class="glass dash-card mt-4">
+            <h5 class="mb-3">Retirement Planning Checklist (6 items)</h5>
+            <ul class="list-unstyled text-muted-2 d-flex flex-column gap-3 mb-0" style="font-size:.86rem;">
+              <li class="d-flex gap-2 align-items-center"><i class="bi bi-check-circle text-primary"></i><span>Audit annual IRA contribution limits and make catch-up contributions if eligible.</span></li>
+              <li class="d-flex gap-2 align-items-center"><i class="bi bi-check-circle text-accent"></i><span>Optimize 401(k) allocations to capture maximum corporate matching programs.</span></li>
+              <li class="d-flex gap-2 align-items-center"><i class="bi bi-check-circle text-gold"></i><span>Verify estate beneficiary designations across all qualified tax buckets.</span></li>
+              <li class="d-flex gap-2 align-items-center"><i class="bi bi-check-circle text-success"></i><span>Assess tax implications of Future Traditional vs Roth distributions.</span></li>
+              <li class="d-flex gap-2 align-items-center"><i class="bi bi-check-circle text-warning"></i><span>Incorporate projected retirement healthcare costs and HSA rollover balances.</span></li>
+              <li class="d-flex gap-2 align-items-center"><i class="bi bi-check-circle text-danger"></i><span>Simulate safe withdrawal rate parameters (ranging from 3.5% to 4.0%).</span></li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- TAX -->
+        <section class="dview" id="v-tax">
+          <div class="row g-3 g-lg-4 mb-4">
+            <div class="col-sm-6 col-xl-3"><div class="glass card-green dash-card"><div style="font-size:.78rem;color:var(--text-dim)">Realized gains (2025)</div><div class="mono mt-1" style="font-size:1.4rem;font-weight:700">$48,210</div></div></div>
+            <div class="col-sm-6 col-xl-3"><div class="glass card-blue dash-card"><div style="font-size:.78rem;color:var(--text-dim)">Harvested losses</div><div class="mono mt-1" style="font-size:1.4rem;font-weight:700">$12,400</div></div></div>
+            <div class="col-sm-6 col-xl-3"><div class="glass card-gold dash-card"><div style="font-size:.78rem;color:var(--text-dim)">Est. tax owed</div><div class="mono mt-1" style="font-size:1.4rem;font-weight:700">$11,520</div></div></div>
+            <div class="col-sm-6 col-xl-3"><div class="glass card-teal dash-card"><div style="font-size:.78rem;color:var(--text-dim)">Effective rate</div><div class="mono mt-1" style="font-size:1.4rem;font-weight:700">23.8%</div></div></div>
+          </div>
+          <div class="glass dash-card"><div class="d-flex justify-content-between align-items-center mb-3"><h5 class="mb-0">Tax reports</h5><a href="../404.html" class="btn btn-grad btn-sm-grad"><i class="bi bi-download"></i> Download all</a></div><div class="table-responsive"><table class="table table-dash"><thead><tr><th>Report</th><th>Year</th><th>Generated</th><th>Status</th><th></th></tr></thead><tbody>
+            <tr><td>1099-DIV</td><td>2025</td><td>Jan 12, 2026</td><td><span class="badge-soft badge-green">Ready</span></td><td><a href="../404.html" class="btn btn-ghost btn-sm-grad">Download</a></td></tr>
+            <tr><td>1099-INT</td><td>2025</td><td>Jan 12, 2026</td><td><span class="badge-soft badge-green">Ready</span></td><td><a href="../404.html" class="btn btn-ghost btn-sm-grad">Download</a></td></tr>
+            <tr><td>Realized gains</td><td>2025</td><td>Jan 15, 2026</td><td><span class="badge-soft badge-green">Ready</span></td><td><a href="../404.html" class="btn btn-ghost btn-sm-grad">Download</a></td></tr>
+            <tr><td>Tax-loss summary</td><td>2025</td><td>Feb 02, 2026</td><td><span class="badge-soft badge-green">Ready</span></td><td><a href="../404.html" class="btn btn-ghost btn-sm-grad">Download</a></td></tr>
+            <tr><td>Q1 2026 estimate</td><td>2026</td><td>Apr 01, 2026</td><td><span class="badge-soft badge-gold">Draft</span></td><td><a href="../404.html" class="btn btn-ghost btn-sm-grad">Preview</a></td></tr>
+            <tr><td>1099-B (Consolidated Brokerage)</td><td>2025</td><td>Jan 18, 2026</td><td><span class="badge-soft badge-green">Ready</span></td><td><a href="../404.html" class="btn btn-ghost btn-sm-grad">Download</a></td></tr>
+            <tr><td>K-1 Partner Allocation</td><td>2025</td><td>Mar 05, 2026</td><td><span class="badge-soft badge-green">Ready</span></td><td><a href="../404.html" class="btn btn-ghost btn-sm-grad">Download</a></td></tr>
+            <tr><td>FBAR Foreign Accounts Report</td><td>2025</td><td>Feb 10, 2026</td><td><span class="badge-soft badge-green">Ready</span></td><td><a href="../404.html" class="btn btn-ghost btn-sm-grad">Download</a></td></tr>
+            <tr><td>Quarterly Estimated Taxes Q4</td><td>2025</td><td>Dec 15, 2025</td><td><span class="badge-soft badge-green">Ready</span></td><td><a href="../404.html" class="btn btn-ghost btn-sm-grad">Download</a></td></tr>
+            <tr><td>Quarterly Estimated Taxes Q3</td><td>2025</td><td>Sep 15, 2025</td><td><span class="badge-soft badge-green">Ready</span></td><td><a href="../404.html" class="btn btn-ghost btn-sm-grad">Download</a></td></tr>
+          </tbody></table></div></div>
+        </section>
+
+        <!-- STATEMENTS -->
+        <section class="dview" id="v-stmt">
+          <div class="glass dash-card"><h5 class="mb-3">Statements</h5><div class="table-responsive"><table class="table table-dash"><thead><tr><th>Period</th><th>Type</th><th>Generated</th><th>Size</th><th></th></tr></thead><tbody>
+            <tr><td>Q1 2026</td><td>Quarterly statement</td><td>Apr 01</td><td class="mono">1.2 MB</td><td><a href="../404.html" class="btn btn-ghost btn-sm-grad">PDF</a></td></tr>
+            <tr><td>2025 Annual</td><td>Annual statement</td><td>Jan 15</td><td class="mono">3.4 MB</td><td><a href="../404.html" class="btn btn-ghost btn-sm-grad">PDF</a></td></tr>
+            <tr><td>March 2026</td><td>Monthly statement</td><td>Apr 01</td><td class="mono">420 KB</td><td><a href="../404.html" class="btn btn-ghost btn-sm-grad">PDF</a></td></tr>
+            <tr><td>February 2026</td><td>Monthly statement</td><td>Mar 01</td><td class="mono">418 KB</td><td><a href="../404.html" class="btn btn-ghost btn-sm-grad">PDF</a></td></tr>
+            <tr><td>January 2026</td><td>Monthly statement</td><td>Feb 01</td><td class="mono">402 KB</td><td><a href="../404.html" class="btn btn-ghost btn-sm-grad">PDF</a></td></tr>
+            <tr><td>December 2025</td><td>Monthly statement</td><td>Jan 01</td><td class="mono">390 KB</td><td><a href="../404.html" class="btn btn-ghost btn-sm-grad">PDF</a></td></tr>
+            <tr><td>November 2025</td><td>Monthly statement</td><td>Dec 01</td><td class="mono">385 KB</td><td><a href="../404.html" class="btn btn-ghost btn-sm-grad">PDF</a></td></tr>
+            <tr><td>October 2025</td><td>Monthly statement</td><td>Nov 01</td><td class="mono">392 KB</td><td><a href="../404.html" class="btn btn-ghost btn-sm-grad">PDF</a></td></tr>
+            <tr><td>September 2025</td><td>Monthly statement</td><td>Oct 01</td><td class="mono">388 KB</td><td><a href="../404.html" class="btn btn-ghost btn-sm-grad">PDF</a></td></tr>
+            <tr><td>August 2025</td><td>Monthly statement</td><td>Sep 01</td><td class="mono">382 KB</td><td><a href="../404.html" class="btn btn-ghost btn-sm-grad">PDF</a></td></tr>
+            <tr><td>July 2025</td><td>Monthly statement</td><td>Aug 01</td><td class="mono">395 KB</td><td><a href="../404.html" class="btn btn-ghost btn-sm-grad">PDF</a></td></tr>
+            <tr><td>Q2 2025</td><td>Quarterly statement</td><td>Jul 01</td><td class="mono">1.1 MB</td><td><a href="../404.html" class="btn btn-ghost btn-sm-grad">PDF</a></td></tr>
+            <tr><td>June 2025</td><td>Monthly statement</td><td>Jul 01</td><td class="mono">378 KB</td><td><a href="../404.html" class="btn btn-ghost btn-sm-grad">PDF</a></td></tr>
+          </tbody></table></div></div>
+        </section>
+
+        <!-- SUPPORT -->
+        <section class="dview" id="v-support">
+          <div class="row g-3 g-lg-4">
+            <div class="col-lg-7"><div class="glass dash-card"><h5 class="mb-3">New support request</h5><form data-validate data-success action="../404.html" data-redirect="../404.html"><div class="mb-3"><label class="form-label">Subject</label><input class="form-control" required placeholder="How can we help?"></div><div class="mb-3"><label class="form-label">Priority</label><select class="form-select"><option>Normal</option><option>High</option><option>Urgent</option></select></div><div class="mb-3"><label class="form-label">Message</label><textarea class="form-control" rows="4" required placeholder="Describe your issue..."></textarea></div><div class="form-success d-none" style="color:var(--primary)"></div><button class="btn btn-grad w-100" type="submit" onclick="window.location.href='../404.html'">Submit request</button></form></div></div>
+            <div class="col-lg-5"><div class="glass dash-card"><h5 class="mb-3">Your advisor</h5><div class="d-flex align-items-center gap-3"><div class="av-circle" style="width:54px;height:54px;background:var(--grad-gold);color:#1a1305;">SR</div><div><div class="fw-semibold">Sofia Romano</div><div style="font-size:.8rem;color:var(--text-dim)">Senior Advisor</div></div></div><div class="d-flex gap-2 mt-3"><a href="../404.html" class="btn btn-ghost btn-sm-grad flex-grow-1"><i class="bi bi-chat-dots"></i> Message</a><a href="../404.html" class="btn btn-grad btn-sm-grad flex-grow-1"><i class="bi bi-calendar"></i> Book call</a></div><div class="mt-4"><h6 style="font-size:.85rem;color:var(--text-dim)">Recent tickets</h6><div class="timeline"><div class="tl-item"><div style="font-size:.88rem" class="fw-semibold">Statement correction</div><div style="font-size:.76rem;color:var(--text-dim)">Resolved · Mar 12</div></div><div class="tl-item"><div style="font-size:.88rem" class="fw-semibold">Dividend question</div><div style="font-size:.76rem;color:var(--text-dim)">Resolved · Feb 28</div></div></div></div></div></div>
+          </div>
+        </section>
+
+        <!-- SETTINGS -->
+        <section class="dview" id="v-settings">
+          <div class="row g-3 g-lg-4">
+            <div class="col-lg-6"><div class="glass dash-card"><h5 class="mb-3">Profile</h5><div class="row g-3"><div class="col-md-6"><label class="form-label">Name</label><input class="form-control" value="Eleanor Hayes" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')"></div><div class="col-md-6"><label class="form-label">Email</label><input class="form-control" value="eleanor@hco.com"></div><div class="col-md-6"><label class="form-label">Phone</label><input class="form-control" value="+1 (212) 555-0142"></div><div class="col-md-6"><label class="form-label">Plan</label><input class="form-control" value="Private Wealth" disabled></div><div class="col-12"><button type="button" class="btn btn-grad" onclick="window.location.href='../404.html';">Save</button></div></div></div></div>
+            <div class="col-lg-6"><div class="glass dash-card"><h5 class="mb-3">Preferences</h5><div class="d-flex justify-content-between align-items-center py-2"><span>SMS Alerts</span><div class="form-check form-switch"><input class="form-check-input" type="checkbox" checked></div></div><div class="d-flex justify-content-between align-items-center py-2"><span>Email statements</span><div class="form-check form-switch"><input class="form-check-input" type="checkbox" checked></div></div><div class="d-flex justify-content-between align-items-center py-2"><span>2-factor auth</span><div class="form-check form-switch"><input class="form-check-input" type="checkbox" checked></div></div></div></div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/dashboard.js"></script>
+</body>
+</html>

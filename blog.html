@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Insights — Stackly Capital</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232ee6a8'/%3E%3Cpath d='M7 21l5-6 4 3 9-10' stroke='%2304130c' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+  <link href="css/style.css" rel="stylesheet" />
+</head>
+<body class="page-blog">
+  <nav class="navbar navbar-expand-lg navbar-glass">
+    <div class="container">
+      <a class="brand" href="index.html"><span class="brand-mark"><img src="assets/logo-stackly.png" alt="Logo"></span><span class="brand-name">Stackly<b>Capital</b></span></a>
+      <button class="navbar-toggler text-light border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav"><i class="bi bi-list fs-2"></i></button>
+      <div class="collapse navbar-collapse justify-content-end" id="nav">
+        <div class="d-lg-none d-flex justify-content-between align-items-center mb-4 w-100">
+          <span class="brand-mark"><img src="assets/logo-stackly.png" alt="Logo"></span>
+          <button type="button" class="btn-close btn-close-white" data-bs-toggle="collapse" data-bs-target="#nav"></button>
+        </div>
+        <div class="d-lg-none mb-4 w-100">
+          <div style="font-size:1.1rem; font-weight:700; color:var(--text); margin-bottom:12px; font-family:var(--font-display);">Search Now!</div>
+          <div class="input-group">
+            <input type="text" class="form-control bg-dark border-secondary text-light" placeholder="Search here...">
+            <span class="input-group-text bg-dark border-secondary text-light"><i class="bi bi-search"></i></span>
+          </div>
+        </div>
+        <ul class="navbar-nav align-items-lg-center gap-lg-1">
+          <li class="nav-item"><a class="nav-link nav-link-custom" data-nav="index.html" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-custom" data-nav="about.html" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-custom" data-nav="services.html" href="services.html">Services</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-custom" data-nav="plans.html" href="plans.html">Plans</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-custom" data-nav="calculators.html" href="calculators.html">Calculators</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-custom" data-nav="blog.html" href="blog.html">Insights</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-custom" data-nav="contact.html" href="contact.html">Contact</a></li>
+          <li class="nav-item ms-lg-2"><a class="btn btn-ghost btn-sm-grad" href="login.html">Sign in</a></li>
+          <li class="nav-item"><a class="btn btn-grad btn-sm-grad" href="register.html">Get started</a></li>
+        </ul>
+        <div class="d-lg-none mt-auto pt-4 border-top border-secondary w-100">
+          <div style="font-size:1.1rem; font-weight:700; color:var(--text); margin-bottom:15px; font-family:var(--font-display);">Contact Info</div>
+          <div class="mb-3">
+            <div style="font-size:0.75rem; color:var(--text-dim); text-transform:uppercase;">Phone</div>
+            <div style="font-size:0.9rem; color:var(--text-muted);">+91 7010792745</div>
+          </div>
+          <div class="mb-3">
+            <div style="font-size:0.75rem; color:var(--text-dim); text-transform:uppercase;">Email</div>
+            <div style="font-size:0.9rem; color:var(--text-muted);">info@Stackly.com</div>
+          </div>
+          <div>
+            <div style="font-size:0.75rem; color:var(--text-dim); text-transform:uppercase;">Location</div>
+            <div style="font-size:0.9rem; color:var(--text-muted);">Stackly, salem</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" style="min-height:50vh;">
+    <div class="hero-bg" style="background-image:url('assets/bg-register.webp');"></div>
+    <div class="hero-grid-bg"></div><div class="hero-orb a"></div><div class="hero-orb b"></div>
+    <div class="container position-relative">
+      <div class="reveal" style="max-width:760px;">
+        <span class="hero-eyebrow"><i class="bi bi-newspaper"></i> Insights</span>
+        <h1 class="hero-title mt-3">Research from the <span class="grad">desk</span></h1>
+        <p class="hero-sub mt-3">Market commentary, planning playbooks and thought leadership from our advisors and research team.</p>
+      </div>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <div class="d-flex flex-wrap gap-2 mb-4 reveal">
+        <button class="btn btn-grad btn-sm-grad filter-btn" onclick="filterCategory('all', this)">All</button>
+        <button class="btn btn-ghost btn-sm-grad filter-btn" onclick="filterCategory('macro', this)">Macro</button>
+        <button class="btn btn-ghost btn-sm-grad filter-btn" onclick="filterCategory('tax', this)">Tax</button>
+        <button class="btn btn-ghost btn-sm-grad filter-btn" onclick="filterCategory('retirement', this)">Retirement</button>
+        <button class="btn btn-ghost btn-sm-grad filter-btn" onclick="filterCategory('estate', this)">Estate</button>
+        <button class="btn btn-ghost btn-sm-grad filter-btn" onclick="filterCategory('ai-markets', this)">AI & Markets</button>
+      </div>
+      <div class="row g-4">
+        <!-- Card 1 -->
+        <div class="col-md-6 col-lg-4 reveal blog-card-item" data-category="macro"><div class="glass card-blue overflow-hidden h-100"><div class="blog-card-img" style="height:185px; background-image: url('assets/blog-rate-cut.webp'); background-size: cover; background-position: center; border-bottom: 1px solid rgba(255,255,255,0.08);"></div><div class="p-4"><span class="badge-soft badge-blue">Macro</span><h5 class="mt-3">The 2026 rate-cut cycle: positioning for the next leg</h5><p class="text-muted-2" style="font-size:.9rem">Our outlook on duration, credit and equity sector rotation as policy eases.</p><div class="d-flex justify-content-between align-items-center mt-3"><span class="text-muted-2" style="font-size:.8rem">Mar 12, 2026 · 8 min</span><a href="404.html">Read →</a></div></div></div></div>
+        
+        <!-- Card 2 -->
+        <div class="col-md-6 col-lg-4 reveal d1 blog-card-item" data-category="ai-markets"><div class="glass card-green overflow-hidden h-100"><div class="blog-card-img" style="height:185px; background-image: url('assets/blog-ai-capex.webp'); background-size: cover; background-position: center; border-bottom: 1px solid rgba(255,255,255,0.08);"></div><div class="p-4"><span class="badge-soft badge-green">AI & Markets</span><h5 class="mt-3">AI capex super-cycle: where the value migrates next</h5><p class="text-muted-2" style="font-size:.9rem">Mapping beneficiaries across semis, power and software.</p><div class="d-flex justify-content-between align-items-center mt-3"><span class="text-muted-2" style="font-size:.8rem">Mar 04, 2026 · 6 min</span><a href="404.html">Read →</a></div></div></div></div>
+        
+        <!-- Card 3 -->
+        <div class="col-md-6 col-lg-4 reveal d2 blog-card-item" data-category="estate"><div class="glass card-gold overflow-hidden h-100"><div class="blog-card-img" style="height:185px; background-image: url('assets/blog-estate-tax.webp'); background-size: cover; background-position: center; border-bottom: 1px solid rgba(255,255,255,0.08);"></div><div class="p-4"><span class="badge-soft badge-gold">Estate</span><h5 class="mt-3">2026 estate tax sunset: a planning playbook</h5><p class="text-muted-2" style="font-size:.9rem">Actionable steps before the exemption threshold resets.</p><div class="d-flex justify-content-between align-items-center mt-3"><span class="text-muted-2" style="font-size:.8rem">Feb 26, 2026 · 10 min</span><a href="404.html">Read →</a></div></div></div></div>
+        
+        <!-- Card 4 -->
+        <div class="col-md-6 col-lg-4 reveal blog-card-item" data-category="tax"><div class="glass card-rose overflow-hidden h-100"><div class="blog-card-img" style="height:185px; background-image: url('assets/blog-tax-loss.webp'); background-size: cover; background-position: center; border-bottom: 1px solid rgba(255,255,255,0.08);"></div><div class="p-4"><span class="badge-soft badge-red">Tax</span><h5 class="mt-3">Tax-loss harvesting in a volatile year</h5><p class="text-muted-2" style="font-size:.9rem">How to capture losses without disrupting your allocation.</p><div class="d-flex justify-content-between align-items-center mt-3"><span class="text-muted-2" style="font-size:.8rem">Feb 18, 2026 · 7 min</span><a href="404.html">Read →</a></div></div></div></div>
+        
+        <!-- Card 5 -->
+        <div class="col-md-6 col-lg-4 reveal d1 blog-card-item" data-category="retirement"><div class="glass card-cyan overflow-hidden h-100"><div class="blog-card-img" style="height:185px; background-image: url('assets/blog-4percent-rule.webp'); background-size: cover; background-position: center; border-bottom: 1px solid rgba(255,255,255,0.08);"></div><div class="p-4"><span class="badge-soft badge-blue">Retirement</span><h5 class="mt-3">The 4% rule, revisited for 2026</h5><p class="text-muted-2" style="font-size:.9rem">A modern take on safe withdrawal rates.</p><div class="d-flex justify-content-between align-items-center mt-3"><span class="text-muted-2" style="font-size:.8rem">Feb 09, 2026 · 9 min</span><a href="404.html">Read →</a></div></div></div></div>
+        
+        <div class="col-md-6 col-lg-4 reveal d2 blog-card-item" data-category="macro"><div class="glass card-teal overflow-hidden h-100"><div class="blog-card-img" style="height:185px; background-image: url('assets/blog-emerging-markets.webp'); background-size: cover; background-position: center; border-bottom: 1px solid rgba(255,255,255,0.08);"></div><div class="p-4"><span class="badge-soft badge-green">Macro</span><h5 class="mt-3">Emerging markets: the next decade</h5><p class="text-muted-2" style="font-size:.9rem">Where the structural growth lies beyond the West.</p><div class="d-flex justify-content-between align-items-center mt-3"><span class="text-muted-2" style="font-size:.8rem">Jan 30, 2026 · 11 min</span><a href="404.html">Read →</a></div></div></div></div>
+        
+        <!-- Card 7 -->
+        <div class="col-md-6 col-lg-4 reveal blog-card-item" data-category="macro"><div class="glass card-slate overflow-hidden h-100"><div class="blog-card-img" style="height:185px; background-image: url('assets/blog-private-credit.webp'); background-size: cover; background-position: center; border-bottom: 1px solid rgba(255,255,255,0.08);"></div><div class="p-4"><span class="badge-soft badge-blue">Macro</span><h5 class="mt-3">Private credit: the new fixed income?</h5><p class="text-muted-2" style="font-size:.9rem">Why direct lending is attracting record inflows.</p><div class="d-flex justify-content-between align-items-center mt-3"><span class="text-muted-2" style="font-size:.8rem">Jan 22, 2026 · 8 min</span><a href="404.html">Read →</a></div></div></div></div>
+        
+        <!-- Card 8 -->
+        <div class="col-md-6 col-lg-4 reveal d1 blog-card-item" data-category="tax"><div class="glass card-amber overflow-hidden h-100"><div class="blog-card-img" style="height:185px; background-image: url('assets/blog-roth-conversion.webp'); background-size: cover; background-position: center; border-bottom: 1px solid rgba(255,255,255,0.08);"></div><div class="p-4"><span class="badge-soft badge-gold">Tax</span><h5 class="mt-3">Roth conversions in a down market</h5><p class="text-muted-2" style="font-size:.9rem">Why 2026 may be the ideal window to convert.</p><div class="d-flex justify-content-between align-items-center mt-3"><span class="text-muted-2" style="font-size:.8rem">Jan 14, 2026 · 6 min</span><a href="404.html">Read →</a></div></div></div></div>
+        
+        <!-- Card 9 -->
+        <div class="col-md-6 col-lg-4 reveal d2 blog-card-item" data-category="estate"><div class="glass card-green overflow-hidden h-100"><div class="blog-card-img" style="height:185px; background-image: url('assets/blog-charitable-trusts.webp'); background-size: cover; background-position: center; border-bottom: 1px solid rgba(255,255,255,0.08);"></div><div class="p-4"><span class="badge-soft badge-green">Estate</span><h5 class="mt-3">Charitable remainder trusts explained</h5><p class="text-muted-2" style="font-size:.9rem">Income, tax benefits and legacy in one structure.</p><div class="d-flex justify-content-between align-items-center mt-3"><span class="text-muted-2" style="font-size:.8rem">Jan 06, 2026 · 12 min</span><a href="404.html">Read →</a></div></div></div></div>
+        
+        <!-- Card 10 -->
+        <div class="col-md-6 col-lg-4 reveal blog-card-item" data-category="ai-markets"><div class="glass card-rose overflow-hidden h-100"><div class="blog-card-img" style="height:185px; background-image: url('assets/blog-ai-rebalancing.webp'); background-size: cover; background-position: center; border-bottom: 1px solid rgba(255,255,255,0.08);"></div><div class="p-4"><span class="badge-soft badge-red">AI & Markets</span><h5 class="mt-3">Generative AI in active portfolio rebalancing</h5><p class="text-muted-2" style="font-size:.9rem">How machine learning models identify tax-loss harvesting pairs faster.</p><div class="d-flex justify-content-between align-items-center mt-3"><span class="text-muted-2" style="font-size:.8rem">Jan 02, 2026 · 7 min</span><a href="404.html">Read →</a></div></div></div></div>
+        
+        <!-- Card 11 -->
+        <div class="col-md-6 col-lg-4 reveal d1 blog-card-item" data-category="retirement"><div class="glass card-blue overflow-hidden h-100"><div class="blog-card-img" style="height:185px; background-image: url('assets/blog-roth-conversion-high.webp'); background-size: cover; background-position: center; border-bottom: 1px solid rgba(255,255,255,0.08);"></div><div class="p-4"><span class="badge-soft badge-blue">Retirement</span><h5 class="mt-3">Structuring Roth conversions for high-income earners</h5><p class="text-muted-2" style="font-size:.9rem">Managing tax bracket creep when moving traditional assets into tax-free Roth buckets.</p><div class="d-flex justify-content-between align-items-center mt-3"><span class="text-muted-2" style="font-size:.8rem">Dec 18, 2025 · 9 min</span><a href="404.html">Read →</a></div></div></div></div>
+        
+        <!-- Card 12 -->
+        <div class="col-md-6 col-lg-4 reveal d2 blog-card-item" data-category="estate"><div class="glass card-gold overflow-hidden h-100"><div class="blog-card-img" style="height:185px; background-image: url('assets/blog-family-trusts.webp'); background-size: cover; background-position: center; border-bottom: 1px solid rgba(255,255,255,0.08);"></div><div class="p-4"><span class="badge-soft badge-gold">Estate</span><h5 class="mt-3">The modern family: multi-state trust dynamics</h5><p class="text-muted-2" style="font-size:.9rem">Navigating state income taxes on trust distributions across different state boundaries.</p><div class="d-flex justify-content-between align-items-center mt-3"><span class="text-muted-2" style="font-size:.8rem">Dec 10, 2025 · 11 min</span><a href="404.html">Read →</a></div></div></div></div>
+        
+        <!-- Card 13 -->
+        <div class="col-md-6 col-lg-4 reveal blog-card-item" data-category="tax"><div class="glass card-cyan overflow-hidden h-100"><div class="blog-card-img" style="height:185px; background-image: url('assets/blog-qsbs-tax.webp'); background-size: cover; background-position: center; border-bottom: 1px solid rgba(255,255,255,0.08);"></div><div class="p-4"><span class="badge-soft badge-blue">Tax</span><h5 class="mt-3">QSBS tax exemptions: a founder's guide</h5><p class="text-muted-2" style="font-size:.9rem">How to qualify for 100% federal capital gains exclusions under Section 1202.</p><div class="d-flex justify-content-between align-items-center mt-3"><span class="text-muted-2" style="font-size:.8rem">Nov 28, 2025 · 10 min</span><a href="404.html">Read →</a></div></div></div></div>
+        
+        <!-- Card 14 -->
+        <div class="col-md-6 col-lg-4 reveal d1 blog-card-item" data-category="macro"><div class="glass card-green overflow-hidden h-100"><div class="blog-card-img" style="height:185px; background-image: url('assets/blog-commodity-cycles.webp'); background-size: cover; background-position: center; border-bottom: 1px solid rgba(255,255,255,0.08);"></div><div class="p-4"><span class="badge-soft badge-green">Macro</span><h5 class="mt-3">Commodity cycles: hedging inflation in portfolios</h5><p class="text-muted-2" style="font-size:.9rem">Analyzing real asset performance across gold, energy, and agriculture trends.</p><div class="d-flex justify-content-between align-items-center mt-3"><span class="text-muted-2" style="font-size:.8rem">Nov 15, 2025 · 8 min</span><a href="404.html">Read →</a></div></div></div></div>
+        
+        <!-- Card 15 -->
+        <div class="col-md-6 col-lg-4 reveal d2 blog-card-item" data-category="ai-markets"><div class="glass card-blue overflow-hidden h-100"><div class="blog-card-img" style="height:185px; background-image: url('assets/blog-ai-liquidity.webp'); background-size: cover; background-position: center; border-bottom: 1px solid rgba(255,255,255,0.08);"></div><div class="p-4"><span class="badge-soft badge-red">AI & Markets</span><h5 class="mt-3">AI-driven liquidity matching for private credits</h5><p class="text-muted-2" style="font-size:.9rem">How secondary market matching systems solve long lock-up periods for venture debts.</p><div class="d-flex justify-content-between align-items-center mt-3"><span class="text-muted-2" style="font-size:.8rem">Nov 02, 2025 · 9 min</span><a href="404.html">Read →</a></div></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-row-custom">
+        <div class="footer-col-brand">
+          <a class="brand mb-3" href="index.html">
+            <span class="brand-mark"><img src="assets/logo-stackly.png" alt="Logo"></span>
+            <span class="brand-name">Stackly<b>Capital</b></span>
+          </a>
+          <p class="text-muted-2 mt-3" style="max-width:340px;">Empowering families and business owners with intelligent wealth advisory, institutional-grade portfolios, and fiduciary planning built to preserve capital across generations.</p>
+          <div class="d-flex gap-2 mt-3">
+            <a class="social-ic" href="404.html"><i class="bi bi-facebook"></i></a>
+            <a class="social-ic" href="404.html"><i class="bi bi-twitter-x"></i></a>
+            <a class="social-ic" href="404.html"><i class="bi bi-linkedin"></i></a>
+            <a class="social-ic" href="404.html"><i class="bi bi-instagram"></i></a>
+          </div>
+        </div>
+        <div class="footer-col-links-planning footer-links">
+          <h6>Wealth Planning</h6>
+          <a href="services.html">Wealth Management</a>
+          <a href="services.html">Retirement Planning</a>
+          <a href="services.html">Tax Optimization</a>
+          <a href="services.html">Estate & Trust</a>
+        </div>
+        <div class="footer-col-links-tools footer-links">
+          <h6>Investment Tools</h6>
+          <a href="services.html">Portfolio Intelligence</a>
+          <a href="services.html">Private Markets</a>
+          <a href="calculators.html">Wealth Calculators</a>
+          <a href="plans.html">Investment Tiers</a>
+        </div>
+        <div class="footer-col-links-company footer-links">
+          <h6>Company</h6>
+          <a href="index.html">Home</a>
+          <a href="about.html">About Us</a>
+          <a href="404.html">Careers</a>
+          <a href="plans.html">Pricing Plans</a>
+          <a href="blog.html">Blog Insights</a>
+          <a href="contact.html">Contact Us</a>
+        </div>
+        <div class="footer-col-links-support footer-links">
+          <h6>Support</h6>
+          <a href="404.html">Testimonials</a>
+          <a href="login.html">Portal Login</a>
+        </div>
+        <div class="footer-col-contact">
+          <h6>Contact</h6>
+          <div class="footer-contact-item d-flex gap-2 align-items-start mb-3">
+            <i class="bi bi-geo-alt-fill"></i>
+            <span>Stackly Capital, MMR Complex, Chinna Thirupathi, Salem, Tamil Nadu - 636008</span>
+          </div>
+          <div class="footer-contact-item d-flex gap-2 align-items-center mb-3">
+            <i class="bi bi-envelope-fill"></i>
+            <a href="mailto:advisory@stackly.capital">advisory@stackly.capital</a>
+          </div>
+          <div class="footer-contact-item d-flex gap-2 align-items-center mb-3">
+            <i class="bi bi-telephone-fill"></i>
+            <span>+1 (212) 555-0188</span>
+          </div>
+          <form class="footer-subscribe-pill" action="404.html">
+            <input type="email" placeholder="Subscribe..." required>
+            <button class="subscribe-btn" type="submit">Go</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Stackly Capital Advisors. All rights reserved.</span>
+        <a href="#" class="scroll-to-top-btn"><i class="bi bi-arrow-up"></i></a>
+      </div>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    function filterCategory(category, btn) {
+      // Toggle button states
+      const buttons = document.querySelectorAll('.filter-btn');
+      buttons.forEach(b => {
+        b.classList.remove('btn-grad');
+        b.classList.add('btn-ghost');
+      });
+      btn.classList.remove('btn-ghost');
+      btn.classList.add('btn-grad');
+
+      // Filter cards
+      const cards = document.querySelectorAll('.blog-card-item');
+      cards.forEach(card => {
+        if (category === 'all' || card.getAttribute('data-category') === category) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
