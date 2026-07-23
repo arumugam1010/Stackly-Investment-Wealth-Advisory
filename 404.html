@@ -32,8 +32,8 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      var role = localStorage.getItem("role");
-      if (!role) {
+      var username = localStorage.getItem("username");
+      if (!username) {
         var btn = document.getElementById("btnDash");
         if (btn) btn.style.display = "none";
       }

@@ -145,18 +145,17 @@ section {
 
 /* Scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 2px;
+  height: 2px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-1);
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(var(--primary), var(--accent));
   border-radius: 10px;
-  border: 2px solid var(--bg-1);
 }
 
 /* ====== Loading screen ====== */
@@ -438,14 +437,17 @@ section {
   .navbar-collapse [style*="color: var(--text)"] {
     color: #ffffff !important;
   }
+
   .navbar-collapse [style*="color:var(--text-dim)"],
   .navbar-collapse [style*="color: var(--text-dim)"] {
     color: rgba(255, 255, 255, 0.55) !important;
   }
+
   .navbar-collapse [style*="color:var(--text-muted)"],
   .navbar-collapse [style*="color: var(--text-muted)"] {
     color: rgba(255, 255, 255, 0.85) !important;
   }
+
   .navbar-collapse .form-control::placeholder {
     color: rgba(255, 255, 255, 0.45) !important;
   }
