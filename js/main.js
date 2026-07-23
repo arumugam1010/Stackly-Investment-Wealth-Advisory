@@ -38,7 +38,7 @@
   }
   function applyTheme(t) {
     document.documentElement.setAttribute("data-theme", t);
-    try { localStorage.setItem("mc-theme", t); } catch (e) {}
+    try { localStorage.setItem("mc-theme", t); } catch (e) { }
     var icons = document.querySelectorAll("[data-theme-icon]");
     icons.forEach(function (i) {
       var sun = i.querySelector(".ic-sun"), moon = i.querySelector(".ic-moon");
@@ -47,12 +47,9 @@
       else { sun.style.display = ""; moon.style.display = "none"; }
     });
   }
-  var saved = null;
-  try { saved = localStorage.getItem("mc-theme"); } catch (e) {}
-  applyTheme(saved || "dark");
+  applyTheme("light");
   window.toggleTheme = function () {
-    var cur = document.documentElement.getAttribute("data-theme");
-    applyTheme(cur === "light" ? "dark" : "light");
+    applyTheme("light");
   };
 
   /* ---------- Navbar scroll state ---------- */
@@ -303,19 +300,19 @@
   function renderCharts() {
     document.querySelectorAll("[data-chart-line]").forEach(function (c) {
       var data = c.getAttribute("data-chart-line").split(",").map(Number);
-      var color = c.getAttribute("data-color") || "#2ee6a8";
+      var color = c.getAttribute("data-color") || "#2563eb";
       drawLine(c, data, color);
     });
     document.querySelectorAll("[data-chart-bars]").forEach(function (c) {
       var data = c.getAttribute("data-chart-bars").split(",").map(Number);
-      var c1 = c.getAttribute("data-c1") || "#2ee6a8", c2 = c.getAttribute("data-c2") || "#19b27e";
+      var c1 = c.getAttribute("data-c1") || "#2563eb", c2 = c.getAttribute("data-c2") || "#1d4ed8";
       drawBars(c, data, [c1, c2]);
     });
     document.querySelectorAll("[data-chart-donut]").forEach(function (c) {
       try {
         var segs = JSON.parse(c.getAttribute("data-chart-donut"));
         drawDonut(c, segs);
-      } catch (err) {}
+      } catch (err) { }
     });
   }
   window.addEventListener("load", renderCharts);
@@ -346,7 +343,7 @@
     var cv = document.getElementById("lsChart");
     if (cv) {
       var arr = []; for (var i = 0; i <= n; i++) arr.push(p * Math.pow(1 + r, i));
-      drawLine(cv, arr, "#2ee6a8");
+      drawLine(cv, arr, "#2563eb");
     }
   };
   window.calcSIP = function () {

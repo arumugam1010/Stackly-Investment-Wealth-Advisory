@@ -8,11 +8,11 @@
     if (!view) return;
     view.querySelectorAll("[data-chart-line]").forEach(function (c) {
       var data = c.getAttribute("data-chart-line").split(",").map(Number);
-      window.MCCharts.drawLine(c, data, c.getAttribute("data-color") || "#2ee6a8");
+      window.MCCharts.drawLine(c, data, c.getAttribute("data-color") || "#2563eb");
     });
     view.querySelectorAll("[data-chart-bars]").forEach(function (c) {
       var data = c.getAttribute("data-chart-bars").split(",").map(Number);
-      window.MCCharts.drawBars(c, data, [c.getAttribute("data-c1") || "#2ee6a8", c.getAttribute("data-c2") || "#19b27e"]);
+      window.MCCharts.drawBars(c, data, [c.getAttribute("data-c1") || "#2563eb", c.getAttribute("data-c2") || "#1d4ed8"]);
     });
     view.querySelectorAll("[data-chart-donut]").forEach(function (c) {
       try { window.MCCharts.drawDonut(c, JSON.parse(c.getAttribute("data-chart-donut"))); } catch (e) {}
@@ -59,7 +59,7 @@
   window.mcToast = function (msg) {
     var t = document.createElement("div");
     t.textContent = msg;
-    t.style.cssText = "position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:9999;padding:12px 22px;border-radius:999px;background:linear-gradient(135deg,#2ee6a8,#19b27e);color:#04130c;font-weight:600;box-shadow:0 10px 30px rgba(46,230,168,.4);opacity:0;transition:opacity .3s ease, transform .3s ease;";
+    t.style.cssText = "position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:9999;padding:12px 22px;border-radius:999px;background:linear-gradient(135deg,#dfb15b,#bc8f30);color:#04130c;font-weight:600;box-shadow:0 10px 30px rgba(223,177,91,.4);opacity:0;transition:opacity .3s ease, transform .3s ease;";
     document.body.appendChild(t);
     requestAnimationFrame(function () { t.style.opacity = "1"; t.style.transform = "translate(-50%, -6px)"; });
     setTimeout(function () { t.style.opacity = "0"; setTimeout(function () { t.remove(); }, 300); }, 2200);
