@@ -565,6 +565,7 @@ section {
   position: relative;
   min-height: 100vh;
   padding-top: 120px;
+  padding-bottom: 60px;
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -2162,8 +2163,10 @@ body.sidebar-open {
 }
 
 /* Public navbar slide-in open state: Lock scroll & blur background */
+html.navbar-open,
 body.navbar-open {
   overflow: hidden !important;
+  height: 100% !important;
 }
 
 @media (max-width: 991.98px) {

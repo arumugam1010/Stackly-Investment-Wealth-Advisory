@@ -373,9 +373,11 @@
   var navCollapse = document.getElementById("nav");
   if (navCollapse) {
     navCollapse.addEventListener("show.bs.collapse", function () {
+      document.documentElement.classList.add("navbar-open");
       document.body.classList.add("navbar-open");
     });
     navCollapse.addEventListener("hide.bs.collapse", function () {
+      document.documentElement.classList.remove("navbar-open");
       document.body.classList.remove("navbar-open");
     });
   }
