@@ -76,6 +76,7 @@
             localStorage.setItem("username", firstName);
 
             const role = document.getElementById("registerRole").value;
+            localStorage.setItem("role", role);
             if (role === "client") {
               window.location.href = "pages/client-dashboard.html";
             } else if (role === "advisor") {
