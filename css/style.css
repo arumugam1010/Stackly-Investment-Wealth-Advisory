@@ -1005,11 +1005,21 @@ section {
   background: rgba(46, 230, 168, .12);
 }
 
-.svc-icon svg {
-  width: 28px;
-  height: 28px;
+.svc-icon svg,
+.svc-icon i {
+  width: auto;
+  height: auto;
+  font-size: 26px;
   color: var(--primary);
 }
+
+.card-green .svc-icon i { color: #059669; }
+.card-blue .svc-icon i { color: #2563eb; }
+.card-gold .svc-icon i { color: #bc8f30; }
+.card-teal .svc-icon i { color: #0d9488; }
+.card-rose .svc-icon i { color: #e11d48; }
+.card-cyan .svc-icon i { color: #0891b2; }
+.card-amber .svc-icon i { color: #d97706; }
 
 /* ====== Testimonials ====== */
 .tst-avatar {
@@ -1103,7 +1113,7 @@ section {
 
 .form-check-input {
   background-color: var(--surface);
-  border-color: var(--border-strong);
+  border: 1.5px solid var(--text-dim) !important;
 }
 
 .form-check-input:checked {
