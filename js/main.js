@@ -369,6 +369,34 @@
     });
   })();
 
+  /* ---------- Login session navbar update ---------- */
+  (function () {
+    var username = localStorage.getItem("username");
+    var role = localStorage.getItem("role");
+    if (username && role) {
+      // Find all Sign In links/buttons
+      document.querySelectorAll('a[href="login.html"]').forEach(function (btn) {
+        btn.textContent = "Dashboard";
+        if (role === "client") {
+          btn.setAttribute("href", "pages/client-dashboard.html");
+        } else if (role === "advisor") {
+          btn.setAttribute("href", "pages/advisor-dashboard.html");
+        } else if (role === "admin") {
+          btn.setAttribute("href", "pages/admin-dashboard.html");
+        }
+      });
+      // Hide all Get Started / Register links/buttons
+      document.querySelectorAll('a[href="register.html"]').forEach(function (btn) {
+        var li = btn.closest("li");
+        if (li) {
+          li.style.display = "none";
+        } else {
+          btn.style.display = "none";
+        }
+      });
+    }
+  })();
+
   /* ---------- Public navbar slide-in menu backdrop and scroll lock ---------- */
   var navCollapse = document.getElementById("nav");
   if (navCollapse) {
